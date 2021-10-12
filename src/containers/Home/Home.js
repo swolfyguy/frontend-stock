@@ -7,12 +7,19 @@ constructor(props){
 super(props)
   this.state={
     items:{},
-    isLoaded:false
+    isLoaded:false,
+    total_profit: {
+      id:0,
+      name:""
+    }
   }
 
   
 }
 
+name(params) {
+  console.log("hello")
+}
 async componentDidMount() {
   try {
       const res = await fetch("https://flaskstockapi.herokuapp.com/api/profit");
@@ -30,7 +37,8 @@ async componentDidMount() {
 
   render() {
     var {isLoaded } =  this.state;
-    const data = this.state.items
+    const data = this.state.items.data
+    const meta = this.state.items.meta
     var ruppe_number = ""
     const numberFormat=(value) => {
       ruppe_number =  new Intl.NumberFormat('en-IN', {
@@ -53,22 +61,25 @@ async componentDidMount() {
       </div>
     }
     else{
+      
+      const rowColor = (value) => {
+      if (parseInt(value) >= 0) {
+         return 'green';
+      } else {
+         return 'red';
+      }
+   }
       const display = data.map((d, key) => {
         return (
             
-            <tr key={key}>
-              <th scope="row">{d.id}</th>
-              <th scope="row">{d.name}</th>
-               
-               <td  >{d.completed.trades}</td>
-               <td  >{numberFormat(d.completed.profit)}</td>
-
-               <td  >{d.on_going.trades}</td>
-               <td  >{numberFormat(d.on_going.profit)}</td>
-
-               <td  >{d.total.trades}</td>
-               <td >{numberFormat(d.total.profit)}</td>
+            <tr  key={key} >
+              <th >{d.id}</th>
+              <th>{d.name}</th>
+               <td className={rowColor(d.completed.profit)} >{numberFormat(d.completed.profit)} / {d.completed.trades}</td>
+               <td className={rowColor(d.on_going.profit)} >{numberFormat(d.on_going.profit)} / {d.on_going.trades}</td>
+               <td className={rowColor(d.total.profit)} >{numberFormat(d.total.profit)} / {d.total.trades}</td>
             </tr>
+
           );
         });
       
@@ -83,19 +94,23 @@ async componentDidMount() {
                 <tr>
                   <th >stock_id</th>
                   <th >stock_name</th>
-
-                  <th >completed_trades</th>
-                  <th >completed_profits</th>
-                 
-                  <th >on_going_trades</th>
+                  <th >completed_profit</th>
                   <th >on_going_profit</th>
-                  
-                  <th >total_trades</th>
-                  <th >total_profits</th>
+                  <th >total_profit</th>
 
                 </tr>
               </thead>
-              <tbody class ="table table-dark">{display}</tbody>
+              <tbody class ="table">{display}</tbody>
+              <thead >
+                <tr>
+                  <th ></th>
+                  <th >Total Profit: </th>
+                  <th className={rowColor(meta.total_completed_profits)} >{numberFormat(meta.total_completed_profits)}</th>
+                  <th className={rowColor(meta.total_ongoing_profits)} >{numberFormat(meta.total_ongoing_profits)}</th>
+                  <th className={rowColor(meta.total_profits)} >{numberFormat(meta.total_profits)}</th>
+
+                </tr>
+              </thead>
             </table>
             
           </div>
