@@ -1,0 +1,17 @@
+.login-form-container {
+  width: 100%;
+  padding: 20px;
+  margin-top: 60px;
+  
+}
+
+.login-button{
+  align-items: center;
+  width: 100%;
+  padding: 20px;
+  align-self: center;
+  
+}
+.password-box:focus {
+  /* box-shadow: none !important; */
+}
