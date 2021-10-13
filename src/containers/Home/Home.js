@@ -75,9 +75,9 @@ async componentDidMount() {
             <tr  key={key} >
               <th >{d.id}</th>
               <th>{d.name}</th>
-               <td className={rowColor(d.completed.profit)} >{numberFormat(d.completed.profit)} / {d.completed.trades}</td>
+               <td className={rowColor(d.completed.profit)} >{numberFormat(d.completed.profit)} </td>
                <td className={rowColor(d.on_going.profit)} >{numberFormat(d.on_going.profit)} / {d.on_going.trades}</td>
-               <td className={rowColor(d.total.profit)} >{numberFormat(d.total.profit)} / {d.total.trades}</td>
+               <td className={rowColor(d.total.profit)} >{numberFormat(d.total.profit)} </td>
             </tr>
 
           );
@@ -92,7 +92,7 @@ async componentDidMount() {
             <table class="table">
               <thead class="thead-light">
                 <tr>
-                  <th >stock_id</th>
+                  <th >strategy_id</th>
                   <th >stock_name</th>
                   <th >completed_profit</th>
                   <th >on_going_profit</th>

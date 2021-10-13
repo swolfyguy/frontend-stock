@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import Home from '../Home/Home';
 import Login from '../Login/Login';
+import Options from '../Options/Options';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Button from 'react-bootstrap/Button';
@@ -22,12 +23,16 @@ function App() {
             <LinkContainer to="/login">
               <Button className="nav-btn" variant="outline-primary">Login</Button>
             </LinkContainer>
+            <LinkContainer to="/option">
+              <Button className="nav-btn" variant="outline-primary">Options</Button>
+            </LinkContainer>
           </Nav>
         </Navbar>
 
         {/* Body */}
         <Route path="/" exact component={Home} />
         <Route path="/login" exact component={Login} />
+        <Route path="/option" exact component={Options} />
       </BrowserRouter>
     </div>
   );
