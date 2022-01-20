@@ -99,7 +99,7 @@ async componentDidMount() {
               <th>{d.name}</th>
                <td className={rowColor(d.completed.profit)} >{numberFormat(d.completed.profit)} </td>
                <td className={rowColor(d.on_going.profit)} >{numberFormat(d.on_going.profit)} / {d.on_going.trades}</td>
-               <td className={rowColor(d.on_going.action)}>{d.on_going.action.toUpperCase()}</td>
+               <td className={rowColor(d.on_going.action)}>{d.on_going.action}</td>
                
                <td className={rowColor(d.total.profit - y_profit[d.id])}> {numberFormat(d.total.profit - (y_profit[d.id]=y_profit[d.id] || 0))}</td>
                <td className={rowColor(d.total.profit)} >{numberFormat(d.total.profit)} / {d.total.trades}</td>
